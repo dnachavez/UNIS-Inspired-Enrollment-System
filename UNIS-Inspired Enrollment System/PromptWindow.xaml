@@ -1,0 +1,81 @@
+﻿<Window x:Class="UNIS_Inspired_Enrollment_System.PromptWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UNIS_Inspired_Enrollment_System"
+        mc:Ignorable="d"
+        Title="PromptWindow" Height="125" Width="250"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ShowInTaskbar="True"
+        Topmost="True"
+        Icon="{StaticResource AppIcon}">
+    <Grid>
+        <Border Background="White" CornerRadius="15">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock x:Name="TbTitle" Text="Title" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="15" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="20 30 20 0"/>
+                <TextBlock x:Name="TbDescription" Text="Description" Foreground="#fcbce0" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" TextAlignment="Center" TextWrapping="Wrap" HorizontalAlignment="Center" Margin="10 0 10 0" />
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Border MinWidth="50" Height="30" CornerRadius="12" HorizontalAlignment="Right" Margin="0 10 5 20">
+                        <Button x:Name="BtnCancel" Content="Cancel" Background="#fcbce0" Foreground="White" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="12" Cursor="Hand" Click="BtnCancel_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#f858b2"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
+                    <Border MinWidth="50" Height="30" CornerRadius="12" HorizontalAlignment="Right" Margin="0 10 5 20">
+                        <Button x:Name="BtnConfirm" Content="Confirm" Background="#f858b2" Foreground="White" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="12" Cursor="Hand" Click="BtnConfirm_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#fcbce0"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </Border>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="55" Margin="0 5 15 0" Panel.ZIndex="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="27.5*"/>
+                <ColumnDefinition Width="27.5*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BtnClose" Grid.Column="1" Width="20" Height="20" Background="#fcbce0" Cursor="Hand" ToolTip="Minimize" Click="BtnClose_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10" Padding="4">
+                            <Viewbox Margin="2">
+                                <Path Fill="White" Data="M0,0 L20,20 M20,0 L0,20" Stroke="White" StrokeThickness="2" Stretch="Uniform" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#f858b2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,1249 @@
+﻿<Page x:Class="UNIS_Inspired_Enrollment_System.Pages.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:UNIS_Inspired_Enrollment_System.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Users">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Border Background="White" CornerRadius="30">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid Margin="0 0 10 0">
+                        <Border Background="White" CornerRadius="20" VerticalAlignment="Top" Padding="15">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="2" ShadowDepth="1" Direction="270" Color="#f858b2" Opacity="0.4"/>
+                            </Border.Effect>
+                            <StackPanel Orientation="Vertical">
+                                <!-- Add User Form -->
+                                <Border BorderBrush="#f858b2" BorderThickness="0 0 0 0.2" Padding="0 0 0 10">
+                                    <TextBlock Text="Add User" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="15" Margin="0 0 0 0"/>
+                                </Border>
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Username" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Margin="0 10 0 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtUsername, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <AdornerDecorator>
+                                                <Grid>
+                                                    <TextBox x:Name="TxtUsername" BorderThickness="0" Background="Transparent" Padding="10 0 0 0" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12">
+                                                        <TextBox.Style>
+                                                            <Style TargetType="TextBox">
+                                                                <Setter Property="Template">
+                                                                    <Setter.Value>
+                                                                        <ControlTemplate TargetType="TextBox">
+                                                                            <Grid>
+                                                                                <TextBlock x:Name="TxtUsernamePlaceholder" Text="Enter a username" Margin="10 0 0 0" VerticalAlignment="Center" Foreground="#fcbce0" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                                                                <ScrollViewer x:Name="PART_ContentHost" Background="Transparent"/>
+                                                                            </Grid>
+                                                                            <ControlTemplate.Triggers>
+                                                                                <MultiTrigger>
+                                                                                    <MultiTrigger.Conditions>
+                                                                                        <Condition Property="IsFocused" Value="False"/>
+                                                                                        <Condition Property="Text" Value=""/>
+                                                                                    </MultiTrigger.Conditions>
+                                                                                    <Setter TargetName="TxtUsernamePlaceholder" Property="Visibility" Value="Visible"/>
+                                                                                </MultiTrigger>
+                                                                            </ControlTemplate.Triggers>
+                                                                        </ControlTemplate>
+                                                                    </Setter.Value>
+                                                                </Setter>
+                                                            </Style>
+                                                        </TextBox.Style>
+                                                    </TextBox>
+                                                </Grid>
+                                            </AdornerDecorator>
+                                        </Border>
+                                        <TextBlock Text="Password" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 20 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Padding="10 0 10 0" Margin="0, 10, 0, 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtPassword, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <Grid>
+                                                <PasswordBox x:Name="TxtPassword" BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" PasswordChanged="TxtPassword_PasswordChanged" GotFocus="TxtPassword_GotFocus"  LostFocus="TxtPassword_LostFocus"/>
+                                                <TextBlock x:Name="TxtPasswordPlaceholder" Text="Enter a password" VerticalAlignment="Center" Foreground="#fcbce0" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" IsHitTestVisible="False"/>
+                                            </Grid>
+                                        </Border>
+                                        <Border MinWidth="70" Height="35" CornerRadius="15" HorizontalAlignment="Right" Margin="0 15 0 0">
+                                            <Button x:Name="BtnAdd" Content="Add" Background="#f858b2" Foreground="White" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="12" Cursor="Hand" Click="BtnAdd_Click">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="Border" Property="Background" Value="#fcbce0"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </Border>
+                                    </StackPanel>
+                                </ScrollViewer>
+
+                                <!-- Add Teacher Form -->
+                                <Border BorderBrush="#f858b2" BorderThickness="0 0 0 0.2" Padding="0 0 0 10" Margin="0 20 0 0">
+                                    <TextBlock Text="Add Teacher" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="15" Margin="0 0 0 0"/>
+                                </Border>
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="First Name" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Margin="0 10 0 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtFirstName, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <AdornerDecorator>
+                                                <Grid>
+                                                    <TextBox x:Name="TxtFirstName" BorderThickness="0" Background="Transparent" Padding="10 0 0 0" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12"/>
+                                                </Grid>
+                                            </AdornerDecorator>
+                                        </Border>
+                                        <TextBlock Text="Middle Name" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Margin="0 10 0 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtMiddleName, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <AdornerDecorator>
+                                                <Grid>
+                                                    <TextBox x:Name="TxtMiddleName" BorderThickness="0" Background="Transparent" Padding="10 0 0 0" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12"/>
+                                                </Grid>
+                                            </AdornerDecorator>
+                                        </Border>
+                                        <TextBlock Text="Last Name" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Margin="0 10 0 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtLastName, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <AdornerDecorator>
+                                                <Grid>
+                                                    <TextBox x:Name="TxtLastName" BorderThickness="0" Background="Transparent" Padding="10 0 0 0" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12"/>
+                                                </Grid>
+                                            </AdornerDecorator>
+                                        </Border>
+                                        <TextBlock Text="Gender" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Height="40" CornerRadius="10" BorderThickness="1" Margin="0, 10, 0, 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=CmbGenders, Path=IsKeyboardFocusWithin}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ComboBox x:Name="CmbGenders" IsEditable="False" IsReadOnly="True" Background="Transparent" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" VerticalContentAlignment="Center">
+                                                <ComboBox.Style>
+                                                    <Style TargetType="ComboBox">
+                                                        <Setter Property="BorderThickness" Value="0"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="ComboBox">
+                                                                    <Grid>
+                                                                        <ToggleButton BorderBrush="Transparent" Background="Transparent" x:Name="ToggleButton" Focusable="False" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                                                                            <ToggleButton.Style>
+                                                                                <Style TargetType="ToggleButton">
+                                                                                    <Setter Property="Template">
+                                                                                        <Setter.Value>
+                                                                                            <ControlTemplate TargetType="ToggleButton">
+                                                                                                <Border Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                                                                                                    <ContentPresenter/>
+                                                                                                </Border>
+                                                                                            </ControlTemplate>
+                                                                                        </Setter.Value>
+                                                                                    </Setter>
+                                                                                </Style>
+                                                                            </ToggleButton.Style>
+                                                                        </ToggleButton>
+                                                                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="10, 0, 30, 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                                                        <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                                                            <Border x:Name="DropDownBorder" Background="White" BorderThickness="0" BorderBrush="Transparent">
+                                                                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                                                </ScrollViewer>
+                                                                            </Border>
+                                                                        </Popup>
+                                                                        <TextBlock x:Name="CmbGendersPlaceholder" Text="Select a gender" Margin="10, 0, 0, 0" VerticalAlignment="Center" Foreground="#fcbce0" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                                                    </Grid>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <MultiTrigger>
+                                                                            <MultiTrigger.Conditions>
+                                                                                <Condition Property="HasItems" Value="False"/>
+                                                                                <Condition Property="IsKeyboardFocusWithin" Value="False"/>
+                                                                            </MultiTrigger.Conditions>
+                                                                            <Setter TargetName="CmbGendersPlaceholder" Property="Visibility" Value="Visible"/>
+                                                                        </MultiTrigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Setter Property="ItemContainerStyle">
+                                                            <Setter.Value>
+                                                                <Style TargetType="ComboBoxItem">
+                                                                    <Setter Property="Padding" Value="5"/>
+                                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                                    <Setter Property="Background" Value="White"/>
+                                                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                                    <Setter Property="Width" Value="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"/>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#fcbce0"/>
+                                                                            <Setter Property="Foreground" Value="#f858b2"/>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </ComboBox.Style>
+                                            </ComboBox>
+                                        </Border>
+                                        <TextBlock Text="Date of Birth" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Height="40" CornerRadius="10" BorderThickness="1" Margin="0, 10, 0, 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=DpDateOfBirth, Path=IsKeyboardFocusWithin}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <DatePicker x:Name="DpDateOfBirth" Background="Transparent" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" VerticalContentAlignment="Center" SelectedDateFormat="Short">
+                                                <DatePicker.Style>
+                                                    <Style TargetType="DatePicker">
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="DatePicker">
+                                                                    <Grid>
+                                                                        <TextBox x:Name="PART_TextBox" Background="Transparent" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" VerticalContentAlignment="Center" BorderThickness="0" IsReadOnly="False"
+     Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource TemplatedParent}, StringFormat=\{0:d\}}" />
+                                                                        <Button x:Name="PART_Button" Content="&#x25BC;" Width="30" Height="30" HorizontalAlignment="Right" Background="Transparent" BorderBrush="Transparent" Foreground="#f858b2"/>
+                                                                        <Popup x:Name="PART_Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" StaysOpen="False" AllowsTransparency="True">
+                                                                            <Border x:Name="DropDownBorder" Background="White" BorderThickness="0" BorderBrush="Transparent">
+                                                                                <Calendar x:Name="PART_Calendar" SelectedDate="{Binding Path=SelectedDate, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Foreground="#f858b2"/>
+                                                                            </Border>
+                                                                        </Popup>
+                                                                    </Grid>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                                                                            <Setter TargetName="DropDownBorder" Property="BorderBrush" Value="#f858b2"/>
+                                                                        </Trigger>
+                                                                        <Trigger Property="IsDropDownOpen" Value="True">
+                                                                            <Setter TargetName="DropDownBorder" Property="BorderThickness" Value="1"/>
+                                                                            <Setter TargetName="DropDownBorder" Property="BorderBrush" Value="#f858b2"/>
+                                                                        </Trigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </DatePicker.Style>
+                                            </DatePicker>
+                                        </Border>
+                                        <TextBlock Text="Mobile No." Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Margin="0 10 0 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtMobileNo, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <AdornerDecorator>
+                                                <Grid>
+                                                    <TextBox x:Name="TxtMobileNo" BorderThickness="0" Background="Transparent" Padding="10 0 0 0" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12"/>
+                                                </Grid>
+                                            </AdornerDecorator>
+                                        </Border>
+                                        <TextBlock Text="Email" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Margin="0 10 0 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtEmail, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <AdornerDecorator>
+                                                <Grid>
+                                                    <TextBox x:Name="TxtEmail" BorderThickness="0" Background="Transparent" Padding="10 0 0 0" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12"/>
+                                                </Grid>
+                                            </AdornerDecorator>
+                                        </Border>
+                                        <TextBlock Text="City" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Margin="0 10 0 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtCity, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <AdornerDecorator>
+                                                <Grid>
+                                                    <TextBox x:Name="TxtCity" BorderThickness="0" Background="Transparent" Padding="10 0 0 0" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12"/>
+                                                </Grid>
+                                            </AdornerDecorator>
+                                        </Border>
+                                        <TextBlock Text="State" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Margin="0 10 0 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtState, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <AdornerDecorator>
+                                                <Grid>
+                                                    <TextBox x:Name="TxtState" BorderThickness="0" Background="Transparent" Padding="10 0 0 0" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12"/>
+                                                </Grid>
+                                            </AdornerDecorator>
+                                        </Border>
+                                        <TextBlock Text="Permanent Address" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Margin="0 10 0 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtPermanentAddress, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <AdornerDecorator>
+                                                <Grid>
+                                                    <TextBox x:Name="TxtPermanentAddress" BorderThickness="0" Background="Transparent" Padding="10 0 0 0" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12"/>
+                                                </Grid>
+                                            </AdornerDecorator>
+                                        </Border>
+                                        <TextBlock Text="Current Address" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Width="Auto" Height="40" CornerRadius="10" BorderThickness="1" Margin="0 10 0 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=TxtCurrentAddress, Path=IsFocused}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <AdornerDecorator>
+                                                <Grid>
+                                                    <TextBox x:Name="TxtCurrentAddress" BorderThickness="0" Background="Transparent" Padding="10 0 0 0" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12"/>
+                                                </Grid>
+                                            </AdornerDecorator>
+                                        </Border>
+                                        <TextBlock Text="Department" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Height="40" CornerRadius="10" BorderThickness="1" Margin="0, 10, 0, 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=CmbDepartments, Path=IsKeyboardFocusWithin}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ComboBox x:Name="CmbDepartments" IsEditable="False" IsReadOnly="True" Background="Transparent" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" VerticalContentAlignment="Center">
+                                                <ComboBox.Style>
+                                                    <Style TargetType="ComboBox">
+                                                        <Setter Property="BorderThickness" Value="0"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="ComboBox">
+                                                                    <Grid>
+                                                                        <ToggleButton BorderBrush="Transparent" Background="Transparent" x:Name="ToggleButton" Focusable="False" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                                                                            <ToggleButton.Style>
+                                                                                <Style TargetType="ToggleButton">
+                                                                                    <Setter Property="Template">
+                                                                                        <Setter.Value>
+                                                                                            <ControlTemplate TargetType="ToggleButton">
+                                                                                                <Border Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                                                                                                    <ContentPresenter/>
+                                                                                                </Border>
+                                                                                            </ControlTemplate>
+                                                                                        </Setter.Value>
+                                                                                    </Setter>
+                                                                                </Style>
+                                                                            </ToggleButton.Style>
+                                                                        </ToggleButton>
+                                                                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="10, 0, 30, 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                                                        <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                                                            <Border x:Name="DropDownBorder" Background="White" BorderThickness="0" BorderBrush="Transparent">
+                                                                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                                                </ScrollViewer>
+                                                                            </Border>
+                                                                        </Popup>
+                                                                        <TextBlock x:Name="CmbDepartmentsPlaceholder" Text="Select a department" Margin="10, 0, 0, 0" VerticalAlignment="Center" Foreground="#fcbce0" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                                                    </Grid>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <MultiTrigger>
+                                                                            <MultiTrigger.Conditions>
+                                                                                <Condition Property="HasItems" Value="False"/>
+                                                                                <Condition Property="IsKeyboardFocusWithin" Value="False"/>
+                                                                            </MultiTrigger.Conditions>
+                                                                            <Setter TargetName="CmbDepartmentsPlaceholder" Property="Visibility" Value="Visible"/>
+                                                                        </MultiTrigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Setter Property="ItemContainerStyle">
+                                                            <Setter.Value>
+                                                                <Style TargetType="ComboBoxItem">
+                                                                    <Setter Property="Padding" Value="5"/>
+                                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                                    <Setter Property="Background" Value="White"/>
+                                                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                                    <Setter Property="Width" Value="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"/>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#fcbce0"/>
+                                                                            <Setter Property="Foreground" Value="#f858b2"/>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </ComboBox.Style>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border MinWidth="70" Height="35" CornerRadius="15" HorizontalAlignment="Right" Margin="0 15 0 0">
+                                            <Button x:Name="BtnAddTeacher" Content="Add" Background="#f858b2" Foreground="White" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="12" Cursor="Hand" Click="BtnAddTeacher_Click">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="Border" Property="Background" Value="#fcbce0"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </Border>
+                                    </StackPanel>
+                                </ScrollViewer>
+
+                                <!-- Add Teacher Load Form -->
+                                <Border BorderBrush="#f858b2" BorderThickness="0 0 0 0.2" Padding="0 0 0 10" Margin="0 20 0 0">
+                                    <TextBlock Text="Add Teacher Load" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="15" Margin="0 0 0 0"/>
+                                </Border>
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Teacher" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Height="40" CornerRadius="10" BorderThickness="1" Margin="0, 10, 0, 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=CmbTeachers, Path=IsKeyboardFocusWithin}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ComboBox x:Name="CmbTeachers" IsEditable="False" IsReadOnly="True" Background="Transparent" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" VerticalContentAlignment="Center">
+                                                <ComboBox.Style>
+                                                    <Style TargetType="ComboBox">
+                                                        <Setter Property="BorderThickness" Value="0"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="ComboBox">
+                                                                    <Grid>
+                                                                        <ToggleButton BorderBrush="Transparent" Background="Transparent" x:Name="ToggleButton" Focusable="False" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                                                                            <ToggleButton.Style>
+                                                                                <Style TargetType="ToggleButton">
+                                                                                    <Setter Property="Template">
+                                                                                        <Setter.Value>
+                                                                                            <ControlTemplate TargetType="ToggleButton">
+                                                                                                <Border Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                                                                                                    <ContentPresenter/>
+                                                                                                </Border>
+                                                                                            </ControlTemplate>
+                                                                                        </Setter.Value>
+                                                                                    </Setter>
+                                                                                </Style>
+                                                                            </ToggleButton.Style>
+                                                                        </ToggleButton>
+                                                                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="10, 0, 30, 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                                                        <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                                                            <Border x:Name="DropDownBorder" Background="White" BorderThickness="0" BorderBrush="Transparent">
+                                                                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                                                </ScrollViewer>
+                                                                            </Border>
+                                                                        </Popup>
+                                                                        <TextBlock x:Name="CmbTeachersPlaceholder" Text="Select a teacher" Margin="10, 0, 0, 0" VerticalAlignment="Center" Foreground="#fcbce0" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                                                    </Grid>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <MultiTrigger>
+                                                                            <MultiTrigger.Conditions>
+                                                                                <Condition Property="HasItems" Value="False"/>
+                                                                                <Condition Property="IsKeyboardFocusWithin" Value="False"/>
+                                                                            </MultiTrigger.Conditions>
+                                                                            <Setter TargetName="CmbTeachersPlaceholder" Property="Visibility" Value="Visible"/>
+                                                                        </MultiTrigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Setter Property="ItemContainerStyle">
+                                                            <Setter.Value>
+                                                                <Style TargetType="ComboBoxItem">
+                                                                    <Setter Property="Padding" Value="5"/>
+                                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                                    <Setter Property="Background" Value="White"/>
+                                                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                                    <Setter Property="Width" Value="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"/>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#fcbce0"/>
+                                                                            <Setter Property="Foreground" Value="#f858b2"/>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </ComboBox.Style>
+                                            </ComboBox>
+                                        </Border>
+                                        <TextBlock Text="Subject" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Height="40" CornerRadius="10" BorderThickness="1" Margin="0, 10, 0, 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=CmbSubjects, Path=IsKeyboardFocusWithin}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ComboBox x:Name="CmbSubjects" IsEditable="False" IsReadOnly="True" Background="Transparent" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" VerticalContentAlignment="Center">
+                                                <ComboBox.Style>
+                                                    <Style TargetType="ComboBox">
+                                                        <Setter Property="BorderThickness" Value="0"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="ComboBox">
+                                                                    <Grid>
+                                                                        <ToggleButton BorderBrush="Transparent" Background="Transparent" x:Name="ToggleButton" Focusable="False" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                                                                            <ToggleButton.Style>
+                                                                                <Style TargetType="ToggleButton">
+                                                                                    <Setter Property="Template">
+                                                                                        <Setter.Value>
+                                                                                            <ControlTemplate TargetType="ToggleButton">
+                                                                                                <Border Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                                                                                                    <ContentPresenter/>
+                                                                                                </Border>
+                                                                                            </ControlTemplate>
+                                                                                        </Setter.Value>
+                                                                                    </Setter>
+                                                                                </Style>
+                                                                            </ToggleButton.Style>
+                                                                        </ToggleButton>
+                                                                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="10, 0, 30, 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                                                        <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                                                            <Border x:Name="DropDownBorder" Background="White" BorderThickness="0" BorderBrush="Transparent">
+                                                                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                                                </ScrollViewer>
+                                                                            </Border>
+                                                                        </Popup>
+                                                                        <TextBlock x:Name="CmbSubjectsPlaceholder" Text="Select a subject" Margin="10, 0, 0, 0" VerticalAlignment="Center" Foreground="#fcbce0" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                                                    </Grid>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <MultiTrigger>
+                                                                            <MultiTrigger.Conditions>
+                                                                                <Condition Property="HasItems" Value="False"/>
+                                                                                <Condition Property="IsKeyboardFocusWithin" Value="False"/>
+                                                                            </MultiTrigger.Conditions>
+                                                                            <Setter TargetName="CmbSubjectsPlaceholder" Property="Visibility" Value="Visible"/>
+                                                                        </MultiTrigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Setter Property="ItemContainerStyle">
+                                                            <Setter.Value>
+                                                                <Style TargetType="ComboBoxItem">
+                                                                    <Setter Property="Padding" Value="5"/>
+                                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                                    <Setter Property="Background" Value="White"/>
+                                                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                                    <Setter Property="Width" Value="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"/>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#fcbce0"/>
+                                                                            <Setter Property="Foreground" Value="#f858b2"/>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </ComboBox.Style>
+                                            </ComboBox>
+                                        </Border>
+                                        <TextBlock Text="Academic Year" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Height="40" CornerRadius="10" BorderThickness="1" Margin="0, 10, 0, 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=CmbAcademicYears, Path=IsKeyboardFocusWithin}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ComboBox x:Name="CmbAcademicYears" IsEditable="False" IsReadOnly="True" Background="Transparent" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" VerticalContentAlignment="Center">
+                                                <ComboBox.Style>
+                                                    <Style TargetType="ComboBox">
+                                                        <Setter Property="BorderThickness" Value="0"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="ComboBox">
+                                                                    <Grid>
+                                                                        <ToggleButton BorderBrush="Transparent" Background="Transparent" x:Name="ToggleButton" Focusable="False" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                                                                            <ToggleButton.Style>
+                                                                                <Style TargetType="ToggleButton">
+                                                                                    <Setter Property="Template">
+                                                                                        <Setter.Value>
+                                                                                            <ControlTemplate TargetType="ToggleButton">
+                                                                                                <Border Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                                                                                                    <ContentPresenter/>
+                                                                                                </Border>
+                                                                                            </ControlTemplate>
+                                                                                        </Setter.Value>
+                                                                                    </Setter>
+                                                                                </Style>
+                                                                            </ToggleButton.Style>
+                                                                        </ToggleButton>
+                                                                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="10, 0, 30, 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                                                        <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                                                            <Border x:Name="DropDownBorder" Background="White" BorderThickness="0" BorderBrush="Transparent">
+                                                                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                                                </ScrollViewer>
+                                                                            </Border>
+                                                                        </Popup>
+                                                                        <TextBlock x:Name="CmbAcademicYearsPlaceholder" Text="Select academic year" Margin="10, 0, 0, 0" VerticalAlignment="Center" Foreground="#fcbce0" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                                                    </Grid>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <MultiTrigger>
+                                                                            <MultiTrigger.Conditions>
+                                                                                <Condition Property="HasItems" Value="False"/>
+                                                                                <Condition Property="IsKeyboardFocusWithin" Value="False"/>
+                                                                            </MultiTrigger.Conditions>
+                                                                            <Setter TargetName="CmbAcademicYearsPlaceholder" Property="Visibility" Value="Visible"/>
+                                                                        </MultiTrigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Setter Property="ItemContainerStyle">
+                                                            <Setter.Value>
+                                                                <Style TargetType="ComboBoxItem">
+                                                                    <Setter Property="Padding" Value="5"/>
+                                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                                    <Setter Property="Background" Value="White"/>
+                                                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                                    <Setter Property="Width" Value="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"/>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#fcbce0"/>
+                                                                            <Setter Property="Foreground" Value="#f858b2"/>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </ComboBox.Style>
+                                            </ComboBox>
+                                        </Border>
+                                        <TextBlock Text="Semester" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="SemiBold" FontSize="12" Margin="0 15 0 0"/>
+                                        <Border Height="40" CornerRadius="10" BorderThickness="1" Margin="0, 10, 0, 0">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=CmbSemesters, Path=IsKeyboardFocusWithin}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <ComboBox x:Name="CmbSemesters" IsEditable="False" IsReadOnly="True" Background="Transparent" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" VerticalContentAlignment="Center">
+                                                <ComboBox.Style>
+                                                    <Style TargetType="ComboBox">
+                                                        <Setter Property="BorderThickness" Value="0"/>
+                                                        <Setter Property="Template">
+                                                            <Setter.Value>
+                                                                <ControlTemplate TargetType="ComboBox">
+                                                                    <Grid>
+                                                                        <ToggleButton BorderBrush="Transparent" Background="Transparent" x:Name="ToggleButton" Focusable="False" IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
+                                                                            <ToggleButton.Style>
+                                                                                <Style TargetType="ToggleButton">
+                                                                                    <Setter Property="Template">
+                                                                                        <Setter.Value>
+                                                                                            <ControlTemplate TargetType="ToggleButton">
+                                                                                                <Border Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
+                                                                                                    <ContentPresenter/>
+                                                                                                </Border>
+                                                                                            </ControlTemplate>
+                                                                                        </Setter.Value>
+                                                                                    </Setter>
+                                                                                </Style>
+                                                                            </ToggleButton.Style>
+                                                                        </ToggleButton>
+                                                                        <ContentPresenter Name="ContentSite" IsHitTestVisible="False" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="10, 0, 30, 0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                                                        <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                                                            <Border x:Name="DropDownBorder" Background="White" BorderThickness="0" BorderBrush="Transparent">
+                                                                                <ScrollViewer Margin="4" SnapsToDevicePixels="True">
+                                                                                    <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Contained"/>
+                                                                                </ScrollViewer>
+                                                                            </Border>
+                                                                        </Popup>
+                                                                        <TextBlock x:Name="CmbSemestersPlaceholder" Text="Select semester" Margin="10, 0, 0, 0" VerticalAlignment="Center" Foreground="#fcbce0" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                                                    </Grid>
+                                                                    <ControlTemplate.Triggers>
+                                                                        <MultiTrigger>
+                                                                            <MultiTrigger.Conditions>
+                                                                                <Condition Property="HasItems" Value="False"/>
+                                                                                <Condition Property="IsKeyboardFocusWithin" Value="False"/>
+                                                                            </MultiTrigger.Conditions>
+                                                                            <Setter TargetName="CmbSemestersPlaceholder" Property="Visibility" Value="Visible"/>
+                                                                        </MultiTrigger>
+                                                                    </ControlTemplate.Triggers>
+                                                                </ControlTemplate>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                        <Setter Property="ItemContainerStyle">
+                                                            <Setter.Value>
+                                                                <Style TargetType="ComboBoxItem">
+                                                                    <Setter Property="Padding" Value="5"/>
+                                                                    <Setter Property="BorderThickness" Value="0"/>
+                                                                    <Setter Property="Background" Value="White"/>
+                                                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                                    <Setter Property="Width" Value="{Binding Path=ActualWidth, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}}}"/>
+                                                                    <Style.Triggers>
+                                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                                            <Setter Property="Background" Value="#fcbce0"/>
+                                                                            <Setter Property="Foreground" Value="#f858b2"/>
+                                                                        </Trigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </Setter.Value>
+                                                        </Setter>
+                                                    </Style>
+                                                </ComboBox.Style>
+                                            </ComboBox>
+                                        </Border>
+                                        <Border MinWidth="70" Height="35" CornerRadius="15" HorizontalAlignment="Right" Margin="0 15 0 0">
+                                            <Button x:Name="BtnAddTeacherLoad" Content="Add" Background="#f858b2" Foreground="White" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="12" Cursor="Hand" Click="BtnAddTeacherLoad_Click">
+                                                <Button.Template>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter TargetName="Border" Property="Background" Value="#fcbce0"/>
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </Border>
+                                    </StackPanel>
+                                </ScrollViewer>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    <Grid Grid.Column="1" Margin="10 0 0 0">
+                        <TabControl>
+                            <TabItem Header="Users">
+                                <StackPanel Orientation="Vertical">
+                                    <Border Background="White" CornerRadius="20" VerticalAlignment="Top" Padding="15" Height="350">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="2" ShadowDepth="1" Direction="270" Color="#f858b2" Opacity="0.4"/>
+                                        </Border.Effect>
+                                        <StackPanel Orientation="Vertical">
+                                            <Border BorderBrush="#f858b2" BorderThickness="0 0 0 0.2" Padding="0 0 0 10">
+                                                <TextBlock Text="List of Users" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="15" Margin="0 0 0 0"/>
+                                            </Border>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                <Border Height="35" Width="145" CornerRadius="10" BorderThickness="1" Padding="10 0 10 0" Margin="0 15 5 0">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=TxtSearch, Path=IsFocused}" Value="True">
+                                                                    <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                    <AdornerDecorator>
+                                                        <Grid>
+                                                            <TextBox x:Name="TxtSearch" BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" TextChanged="TxtSearch_TextChanged">
+                                                                <TextBox.Style>
+                                                                    <Style TargetType="TextBox">
+                                                                        <Setter Property="Template">
+                                                                            <Setter.Value>
+                                                                                <ControlTemplate TargetType="TextBox">
+                                                                                    <Grid>
+                                                                                        <TextBlock x:Name="TxtSearchPlaceholder" Text="Enter a keyword to search" Margin="0 0 0 0" VerticalAlignment="Center" Foreground="#fcbce0" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                                                                        <ScrollViewer x:Name="PART_ContentHost" Background="Transparent"/>
+                                                                                    </Grid>
+                                                                                    <ControlTemplate.Triggers>
+                                                                                        <MultiTrigger>
+                                                                                            <MultiTrigger.Conditions>
+                                                                                                <Condition Property="IsFocused" Value="False"/>
+                                                                                                <Condition Property="Text" Value=""/>
+                                                                                            </MultiTrigger.Conditions>
+                                                                                            <Setter TargetName="TxtSearchPlaceholder" Property="Visibility" Value="Visible"/>
+                                                                                        </MultiTrigger>
+                                                                                    </ControlTemplate.Triggers>
+                                                                                </ControlTemplate>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                    </Style>
+                                                                </TextBox.Style>
+                                                            </TextBox>
+                                                        </Grid>
+                                                    </AdornerDecorator>
+                                                </Border>
+                                                <Border MinWidth="70" Height="35" CornerRadius="15" HorizontalAlignment="Right" Margin="5 15 0 0">
+                                                    <Button x:Name="BtnSearch" Content="Search" Background="#f858b2" Foreground="White" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="12" Cursor="Hand" Click="BtnSearch_Click">
+                                                        <Button.Template>
+                                                            <ControlTemplate TargetType="Button">
+                                                                <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10">
+                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter TargetName="Border" Property="Background" Value="#fcbce0"/>
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Button.Template>
+                                                    </Button>
+                                                </Border>
+                                            </StackPanel>
+                                            <DataGrid x:Name="DgUsers" Background="White" Height="280" BorderThickness="0" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="True" GridLinesVisibility="None" HeadersVisibility="Column" IsReadOnly="True" Margin="0 15 0 0" PreviewKeyDown="DgUsers_PreviewKeyDown" MouseDoubleClick="DgUsers_MouseDoubleClick">
+                                                <DataGrid.Resources>
+                                                    <Style TargetType="DataGridColumnHeader">
+                                                        <Setter Property="Background" Value="#f858b5"/>
+                                                        <Setter Property="Foreground" Value="White"/>
+                                                        <Setter Property="FontFamily" Value="Cormorant Garamond"/>
+                                                        <Setter Property="FontWeight" Value="Bold"/>
+                                                        <Setter Property="FontSize" Value="12"/>
+                                                        <Setter Property="Padding" Value="5"/>
+                                                        <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                        <Setter Property="BorderThickness" Value="0.5"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#fcbce0"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                    <Style TargetType="DataGridCell">
+                                                        <Setter Property="BorderThickness" Value="0"/>
+                                                        <Setter Property="Margin" Value="5"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#fcbce0"/>
+                                                                <Setter Property="Foreground" Value="White"/>
+                                                            </Trigger>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#fcbce0"/>
+                                                                <Setter Property="Foreground" Value="White"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                    <Style TargetType="DataGridRow">
+                                                        <Setter Property="Background" Value="White"/>
+                                                        <Setter Property="Foreground" Value="#f858b5"/>
+                                                        <Setter Property="FontFamily" Value="Cormorant Garamond"/>
+                                                        <Setter Property="FontWeight" Value="Regular"/>
+                                                        <Setter Property="FontSize" Value="12"/>
+                                                        <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                        <Setter Property="BorderThickness" Value="0 0 0 0.5"/>
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#fcbce0"/>
+                                                                <Setter Property="Foreground" Value="White"/>
+                                                            </Trigger>
+                                                            <Trigger Property="IsSelected" Value="True">
+                                                                <Setter Property="Background" Value="#fcbce0"/>
+                                                                <Setter Property="Foreground" Value="White"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </DataGrid.Resources>
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Header="Id" Width="50" Binding="{Binding Id}"/>
+                                                    <DataGridTextColumn Header="Username" Width="*" Binding="{Binding Username}"/>
+                                                    <DataGridTextColumn Header="Password Hash" Width="*" Binding="{Binding PasswordHash}"/>
+                                                    <DataGridTextColumn Header="Password Salt" Width="*" Binding="{Binding PasswordSalt}"/>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem Header="Teachers">
+                                <StackPanel Orientation="Vertical">
+                                    <Border Background="White" CornerRadius="20" VerticalAlignment="Top" Padding="15" Height="350">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="2" ShadowDepth="1" Direction="270" Color="#f858b2" Opacity="0.4"/>
+                                        </Border.Effect>
+                                        <StackPanel Orientation="Vertical">
+                                            <Border BorderBrush="#f858b2" BorderThickness="0 0 0 0.2" Padding="0 0 0 10">
+                                                <TextBlock Text="List of Teachers" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="15" Margin="0 0 0 0"/>
+                                            </Border>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                <Border Height="35" Width="145" CornerRadius="10" BorderThickness="1" Padding="10 0 10 0" Margin="0 15 5 0">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=TxtTeacherSearch, Path=IsFocused}" Value="True">
+                                                                    <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                    <AdornerDecorator>
+                                                        <Grid>
+                                                            <TextBox x:Name="TxtTeacherSearch" BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" TextChanged="TxtTeacherSearch_TextChanged">
+                                                                <TextBox.Style>
+                                                                    <Style TargetType="TextBox">
+                                                                        <Setter Property="Template">
+                                                                            <Setter.Value>
+                                                                                <ControlTemplate TargetType="TextBox">
+                                                                                    <Grid>
+                                                                                        <TextBlock x:Name="TxtTeacherSearchPlaceholder" Text="Enter a keyword to search" Margin="0 0 0 0" VerticalAlignment="Center" Foreground="#fcbce0" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                                                                        <ScrollViewer x:Name="PART_ContentHost" Background="Transparent"/>
+                                                                                    </Grid>
+                                                                                    <ControlTemplate.Triggers>
+                                                                                        <MultiTrigger>
+                                                                                            <MultiTrigger.Conditions>
+                                                                                                <Condition Property="IsFocused" Value="False"/>
+                                                                                                <Condition Property="Text" Value=""/>
+                                                                                            </MultiTrigger.Conditions>
+                                                                                            <Setter TargetName="TxtTeacherSearchPlaceholder" Property="Visibility" Value="Visible"/>
+                                                                                        </MultiTrigger>
+                                                                                    </ControlTemplate.Triggers>
+                                                                                </ControlTemplate>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                    </Style>
+                                                                </TextBox.Style>
+                                                            </TextBox>
+                                                        </Grid>
+                                                    </AdornerDecorator>
+                                                </Border>
+                                                <Border MinWidth="70" Height="35" CornerRadius="15" HorizontalAlignment="Right" Margin="5 15 0 0">
+                                                    <Button x:Name="BtnTeacherSearch" Content="Search" Background="#f858b2" Foreground="White" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="12" Cursor="Hand" Click="BtnTeacherSearch_Click">
+                                                        <Button.Template>
+                                                            <ControlTemplate TargetType="Button">
+                                                                <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10">
+                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter TargetName="Border" Property="Background" Value="#fcbce0"/>
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Button.Template>
+                                                    </Button>
+                                                </Border>
+                                            </StackPanel>
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                                <DataGrid x:Name="DgTeachers" Background="White" BorderThickness="0" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="True" GridLinesVisibility="None" HeadersVisibility="Column" IsReadOnly="True" Margin="0 15 0 0" PreviewKeyDown="DgTeachers_PreviewKeyDown" MouseDoubleClick="DgTeachers_MouseDoubleClick">
+                                                    <DataGrid.Resources>
+                                                        <Style TargetType="DataGridColumnHeader">
+                                                            <Setter Property="Background" Value="#f858b5"/>
+                                                            <Setter Property="Foreground" Value="White"/>
+                                                            <Setter Property="FontFamily" Value="Cormorant Garamond"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                            <Setter Property="FontSize" Value="12"/>
+                                                            <Setter Property="Padding" Value="5"/>
+                                                            <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                            <Setter Property="BorderThickness" Value="0.5"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#fcbce0"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                        <Style TargetType="DataGridCell">
+                                                            <Setter Property="BorderThickness" Value="0"/>
+                                                            <Setter Property="Margin" Value="5"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#fcbce0"/>
+                                                                    <Setter Property="Foreground" Value="White"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsSelected" Value="True">
+                                                                    <Setter Property="Background" Value="#fcbce0"/>
+                                                                    <Setter Property="Foreground" Value="White"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                        <Style TargetType="DataGridRow">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Foreground" Value="#f858b5"/>
+                                                            <Setter Property="FontFamily" Value="Cormorant Garamond"/>
+                                                            <Setter Property="FontWeight" Value="Regular"/>
+                                                            <Setter Property="FontSize" Value="12"/>
+                                                            <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                            <Setter Property="BorderThickness" Value="0 0 0 0.5"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#fcbce0"/>
+                                                                    <Setter Property="Foreground" Value="White"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsSelected" Value="True">
+                                                                    <Setter Property="Background" Value="#fcbce0"/>
+                                                                    <Setter Property="Foreground" Value="White"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </DataGrid.Resources>
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Header="Department" Binding="{Binding Department}"/>
+                                                        <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+                                                        <DataGridTextColumn Header="Middle Name" Binding="{Binding MiddleName}"/>
+                                                        <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+                                                        <DataGridTextColumn Header="Gender" Binding="{Binding Gender}"/>
+                                                        <DataGridTextColumn Header="Date of Birth" Binding="{Binding DateOfBirth}"/>
+                                                        <DataGridTextColumn Header="Mobile No." Binding="{Binding MobileNo}"/>
+                                                        <DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                                                        <DataGridTextColumn Header="City" Binding="{Binding City}"/>
+                                                        <DataGridTextColumn Header="State" Binding="{Binding State}"/>
+                                                        <DataGridTextColumn Header="Permanent Address" Binding="{Binding PermanentAddress}"/>
+                                                        <DataGridTextColumn Header="Current Address" Binding="{Binding CurrentAddress}"/>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </ScrollViewer>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </TabItem>
+                            <TabItem Header="Teacher Loads">
+                                <StackPanel Orientation="Vertical">
+                                    <Border Background="White" CornerRadius="20" VerticalAlignment="Top" Padding="15" Height="350">
+                                        <Border.Effect>
+                                            <DropShadowEffect BlurRadius="2" ShadowDepth="1" Direction="270" Color="#f858b2" Opacity="0.4"/>
+                                        </Border.Effect>
+                                        <StackPanel Orientation="Vertical">
+                                            <Border BorderBrush="#f858b2" BorderThickness="0 0 0 0.2" Padding="0 0 0 10">
+                                                <TextBlock Text="List of Teacher Loads" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="15" Margin="0 0 0 0"/>
+                                            </Border>
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                                <Border Height="35" Width="145" CornerRadius="10" BorderThickness="1" Padding="10 0 10 0" Margin="0 15 5 0">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=TxtTeacherLoadSearch, Path=IsFocused}" Value="True">
+                                                                    <Setter Property="BorderBrush" Value="#f858b2"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                    <AdornerDecorator>
+                                                        <Grid>
+                                                            <TextBox x:Name="TxtTeacherLoadSearch" BorderThickness="0" Background="Transparent" VerticalContentAlignment="Center" Foreground="#f858b2" FontFamily="Cormorant Garamond" FontWeight="Regular" FontSize="12" TextChanged="TxtTeacherLoadSearch_TextChanged">
+                                                                <TextBox.Style>
+                                                                    <Style TargetType="TextBox">
+                                                                        <Setter Property="Template">
+                                                                            <Setter.Value>
+                                                                                <ControlTemplate TargetType="TextBox">
+                                                                                    <Grid>
+                                                                                        <TextBlock x:Name="TxtTeacherLoadSearchPlaceholder" Text="Enter a keyword to search" Margin="0 0 0 0" VerticalAlignment="Center" Foreground="#fcbce0" Visibility="Collapsed" IsHitTestVisible="False"/>
+                                                                                        <ScrollViewer x:Name="PART_ContentHost" Background="Transparent"/>
+                                                                                    </Grid>
+                                                                                    <ControlTemplate.Triggers>
+                                                                                        <MultiTrigger>
+                                                                                            <MultiTrigger.Conditions>
+                                                                                                <Condition Property="IsFocused" Value="False"/>
+                                                                                                <Condition Property="Text" Value=""/>
+                                                                                            </MultiTrigger.Conditions>
+                                                                                            <Setter TargetName="TxtTeacherLoadSearchPlaceholder" Property="Visibility" Value="Visible"/>
+                                                                                        </MultiTrigger>
+                                                                                    </ControlTemplate.Triggers>
+                                                                                </ControlTemplate>
+                                                                            </Setter.Value>
+                                                                        </Setter>
+                                                                    </Style>
+                                                                </TextBox.Style>
+                                                            </TextBox>
+                                                        </Grid>
+                                                    </AdornerDecorator>
+                                                </Border>
+                                                <Border MinWidth="70" Height="35" CornerRadius="15" HorizontalAlignment="Right" Margin="5 15 0 0">
+                                                    <Button x:Name="BtnTeacherLoadSearch" Content="Search" Background="#f858b2" Foreground="White" FontFamily="Cormorant Garamond" FontWeight="Bold" FontSize="12" Cursor="Hand" Click="BtnTeacherLoadSearch_Click">
+                                                        <Button.Template>
+                                                            <ControlTemplate TargetType="Button">
+                                                                <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10">
+                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                                </Border>
+                                                                <ControlTemplate.Triggers>
+                                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                                        <Setter TargetName="Border" Property="Background" Value="#fcbce0"/>
+                                                                    </Trigger>
+                                                                </ControlTemplate.Triggers>
+                                                            </ControlTemplate>
+                                                        </Button.Template>
+                                                    </Button>
+                                                </Border>
+                                            </StackPanel>
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                                                <DataGrid x:Name="DgTeacherLoads" Background="White" BorderThickness="0" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserResizeRows="False" CanUserResizeColumns="False" CanUserSortColumns="True" GridLinesVisibility="None" HeadersVisibility="Column" IsReadOnly="True" Margin="0 15 0 0" PreviewKeyDown="DgTeacherLoads_PreviewKeyDown" MouseDoubleClick="DgTeacherLoads_MouseDoubleClick">
+                                                    <DataGrid.Resources>
+                                                        <Style TargetType="DataGridColumnHeader">
+                                                            <Setter Property="Background" Value="#f858b5"/>
+                                                            <Setter Property="Foreground" Value="White"/>
+                                                            <Setter Property="FontFamily" Value="Cormorant Garamond"/>
+                                                            <Setter Property="FontWeight" Value="Bold"/>
+                                                            <Setter Property="FontSize" Value="12"/>
+                                                            <Setter Property="Padding" Value="5"/>
+                                                            <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                            <Setter Property="BorderThickness" Value="0.5"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#fcbce0"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                        <Style TargetType="DataGridCell">
+                                                            <Setter Property="BorderThickness" Value="0"/>
+                                                            <Setter Property="Margin" Value="5"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#fcbce0"/>
+                                                                    <Setter Property="Foreground" Value="White"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsSelected" Value="True">
+                                                                    <Setter Property="Background" Value="#fcbce0"/>
+                                                                    <Setter Property="Foreground" Value="White"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                        <Style TargetType="DataGridRow">
+                                                            <Setter Property="Background" Value="White"/>
+                                                            <Setter Property="Foreground" Value="#f858b5"/>
+                                                            <Setter Property="FontFamily" Value="Cormorant Garamond"/>
+                                                            <Setter Property="FontWeight" Value="Regular"/>
+                                                            <Setter Property="FontSize" Value="12"/>
+                                                            <Setter Property="BorderBrush" Value="#fcbce0"/>
+                                                            <Setter Property="BorderThickness" Value="0 0 0 0.5"/>
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#fcbce0"/>
+                                                                    <Setter Property="Foreground" Value="White"/>
+                                                                </Trigger>
+                                                                <Trigger Property="IsSelected" Value="True">
+                                                                    <Setter Property="Background" Value="#fcbce0"/>
+                                                                    <Setter Property="Foreground" Value="White"/>
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </DataGrid.Resources>
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Header="Teacher Name" Binding="{Binding TeacherName}"/>
+                                                        <DataGridTextColumn Header="Subject Code" Binding="{Binding SubjectCode}"/>
+                                                        <DataGridTextColumn Header="Subject Name" Binding="{Binding SubjectName}"/>
+                                                        <DataGridTextColumn Header="Academic Year" Binding="{Binding AcademicYear}"/>
+                                                        <DataGridTextColumn Header="Semester" Binding="{Binding Semester}"/>
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </ScrollViewer>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                </Grid>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

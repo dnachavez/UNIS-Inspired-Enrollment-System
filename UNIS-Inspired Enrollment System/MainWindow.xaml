@@ -1,0 +1,83 @@
+﻿<Window x:Class="UNIS_Inspired_Enrollment_System.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UNIS_Inspired_Enrollment_System"
+        xmlns:control="clr-namespace:UNIS_Inspired_Enrollment_System.Controls"
+        mc:Ignorable="d"
+        Title="Dashboard - UNIS" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        ShowInTaskbar="True"
+        Icon="{StaticResource AppIcon}">
+    <Grid>
+        <Border Background="#f858b2" CornerRadius="30">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Image Source="C:\Users\DAN\source\repos\UNIS-Inspired Enrollment System\UNIS-Inspired Enrollment System\Images\logo_light.png" Width="50" HorizontalAlignment="Center" VerticalAlignment="Top" ToolTip="UNIS Logo" Margin="0 30 0 0"/>
+                    <ListBox x:Name="SidebarButtons" Grid.Column="0" SelectionMode="Single" Margin="8 25 8 95" BorderThickness="0" Background="Transparent" VerticalAlignment="Center" SelectionChanged="SidebarButtons_SelectionChanged">
+                        <control:SidebarButton Margin="0 4 0 4" Padding="6" Icon="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4M3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.39.39 0 0 0-.029-.518M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A8 8 0 0 1 0 10m8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3" ToolTip="Dashboard"/>
+                        <control:SidebarButton x:Name="Admission" Margin="0 4 0 4" Padding="6" Icon="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.354-5.854 1.5 1.5a.5.5 0 0 1-.708.708L13 11.707V14.5a.5.5 0 0 1-1 0v-2.793l-.646.647a.5.5 0 0 1-.708-.708l1.5-1.5a.5.5 0 0 1 .708 0M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" ToolTip="Admission"/>
+                        <control:SidebarButton NavLink="/Pages/StudentPage.xaml" Margin="0 4 0 4" Padding="6" Icon="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96q.04-.245.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 1 1 12z" ToolTip="Students"/>
+                        <control:SidebarButton NavLink="/Pages/UserPage.xaml" Margin="0 4 0 4" Padding="6" Icon="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4" ToolTip="Users"/>
+                        <control:SidebarButton x:Name="Academic" Margin="0 4 0 4" Padding="6" Icon="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917zM8 8.46 1.758 5.965 8 3.052l6.242 2.913zM4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466zm-.068 1.873.22-.748 3.496 1.311a.5.5 0 0 0 .352 0l3.496-1.311.22.748L8 12.46z" ToolTip="Academic"/>
+                        <control:SidebarButton Margin="0 4 0 4" Padding="6" Icon="M7.5 1.018a7 7 0 0 0-4.79 11.566L7.5 7.793zm1 0V7.5h6.482A7 7 0 0 0 8.5 1.018M14.982 8.5H8.207l-4.79 4.79A7 7 0 0 0 14.982 8.5M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8" ToolTip="Reports"/>
+                    </ListBox>
+                    <ListBox x:Name="BottomSidebarButtons" Grid.Column="0" SelectionMode="Single" Margin="8 25 8 25" BorderBrush="White" BorderThickness="0 1 0 0" Background="Transparent" VerticalAlignment="Bottom" SelectionChanged="BottomSidebarButtons_SelectionChanged">
+                        <control:SidebarButton Margin="0 6 0 4" Padding="6" Icon="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" ToolTip="Account"/>
+                        <control:SidebarButton x:Name="BtnLogout" Margin="0 4 0 4" Padding="6" Icon="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" ToolTip="Logout"/>
+                    </ListBox>
+                </Grid>
+                <Border Grid.Column="1" Background="White" CornerRadius="30">
+                    <Frame x:Name="Page" NavigationUIVisibility="Hidden" Background="Transparent" Margin="15 50 15 15"/>
+                </Border>
+            </Grid>
+        </Border>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="55" Margin="0 10 15 0" Panel.ZIndex="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="27.5*"/>
+                <ColumnDefinition Width="27.5*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="BtnMinimize" Grid.Column="0" Width="20" Height="20" Background="#fcbce0" Cursor="Hand" ToolTip="Minimize" Click="BtnMinimize_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10" Padding="4">
+                            <Viewbox Margin="2">
+                                <Path Fill="White" Data="M0,0 L20,0 L20,2 L0,2 Z" Stretch="Uniform" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#f858b2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="BtnClose" Grid.Column="1" Width="20" Height="20" Background="#fcbce0" Cursor="Hand" ToolTip="Minimize" Click="BtnClose_Click">
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Border" Background="{TemplateBinding Background}" CornerRadius="10" Padding="4">
+                            <Viewbox Margin="2">
+                                <Path Fill="White" Data="M0,0 L20,20 M20,0 L0,20" Stroke="White" StrokeThickness="2" Stretch="Uniform" Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Viewbox>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#f858b2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
